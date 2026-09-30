@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://vcj371apvmfa"]
+
+[ext_resource type="Script" uid="uid://fscs22fnybch" path="res://assets/activity/activity_manager.gd" id="1_j2eim"]
+[ext_resource type="PackedScene" uid="uid://dne4ocjgvf3eq" path="res://assets/activity/designer.tscn" id="3_836ik"]
+[ext_resource type="PackedScene" uid="uid://b8gm5d86j77to" path="res://assets/activity/main_menu.tscn" id="3_j2eim"]
+[ext_resource type="PackedScene" uid="uid://cpar0lu2wstkw" path="res://assets/activity/simulation.tscn" id="4_836ik"]
+[ext_resource type="Script" uid="uid://bun18fx80la54" path="res://assets/camera.gd" id="8_tkxyu"]
+
+[node name="Main" type="Node" unique_id=1167367704 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_j2eim")
+camera = NodePath("Camera2D")
+first_activity = &"MainMenu"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1907379768]
+position_smoothing_enabled = true
+script = ExtResource("8_tkxyu")
+
+[node name="MainMenu" parent="." unique_id=1054151970 instance=ExtResource("3_j2eim")]
+
+[node name="Designer" parent="." unique_id=186513415 instance=ExtResource("3_836ik")]
+visible = false
+
+[node name="Simulation" parent="." unique_id=1049998878 instance=ExtResource("4_836ik")]
+process_mode = 4
+visible = false

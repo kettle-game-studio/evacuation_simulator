@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cp7eqdko261su"]
+
+[ext_resource type="Script" uid="uid://mkpa37quxyc4" path="res://assets/map/map.gd" id="1_8r1wy"]
+[ext_resource type="AudioStream" uid="uid://c00tumiurffkh" path="res://assets/sounds/legacy/exit_random.tres" id="2_cfu5o"]
+[ext_resource type="Script" uid="uid://bkoahmxwd2224" path="res://assets/map/map_ui.gd" id="2_yoxng"]
+[ext_resource type="AudioStream" uid="uid://biy7fe46ims7e" path="res://assets/sounds/legacy/die_random.tres" id="3_q6qd4"]
+[ext_resource type="Script" uid="uid://c4tivpsrnfq53" path="res://assets/tilemap/tile_palette.gd" id="3_y4tts"]
+[ext_resource type="Texture2D" uid="uid://ckkb2y7m6bpp4" path="res://assets/sprites/wall.png" id="4_cfu5o"]
+[ext_resource type="TileSet" uid="uid://b2wkmlfjmg4n4" path="res://assets/tilesets/legacy/controls_legacy_tileset.tres" id="5_q6qd4"]
+[ext_resource type="Script" uid="uid://dxo3c0ihvwh8p" path="res://assets/tilemap/tile_map_layer_indexed.gd" id="6_qalbb"]
+[ext_resource type="TileSet" uid="uid://cnset5ijsjosd" path="res://assets/tilesets/legacy/arrows_legacy_tileset.tres" id="7_7xplb"]
+[ext_resource type="TileSet" uid="uid://dh3f4j5j3t60" path="res://assets/tilesets/fire_particles_tileset.tres" id="8_tpay8"]
+[ext_resource type="Script" uid="uid://318lmn3okoqx" path="res://assets/tilemap/fire_simulator.gd" id="9_vixgd"]
+[ext_resource type="AudioStream" uid="uid://bhgnyhtf4l7ku" path="res://assets/sounds/legacy/new_fire.ogg" id="10_d4jxa"]
+[ext_resource type="TileSet" uid="uid://dtrhhame14pv8" path="res://assets/tilesets/legacy/dummies_legacy_tileset.tres" id="11_lpjpo"]
+[ext_resource type="Script" uid="uid://ds186w0jau8in" path="res://assets/tilemap/tile_wall.gd" id="12_1scyg"]
+[ext_resource type="Script" uid="uid://csfa25tx37ai0" path="res://assets/tilemap/tile_editor_overview.gd" id="13_eusct"]
+[ext_resource type="Script" uid="uid://b31ulj8ad4i0g" path="res://assets/tilemap/tile_grid_overlay.gd" id="14_6v45n"]
+[ext_resource type="Script" uid="uid://bebuqxkposugh" path="res://assets/tilemap/walls_preview.gd" id="14_8r1wy"]
+[ext_resource type="Script" uid="uid://bwmgbu4vu7maf" path="res://assets/tilemap/tile_map_editor.gd" id="15_j4mki"]
+
+[node name="Map" type="Node2D" unique_id=1364593442]
+script = ExtResource("1_8r1wy")
+exit_sound = ExtResource("2_cfu5o")
+die_sound = ExtResource("3_q6qd4")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1065751713]
+unique_name_in_owner = true
+script = ExtResource("2_yoxng")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1602046411]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer" unique_id=325341976]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer" unique_id=1916978120]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Exit" type="Button" parent="UI/MarginContainer/HBoxContainer/LeftContainer" unique_id=1730943294]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
+
+[node name="CenterContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer" unique_id=297460644]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="Control" type="Control" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=1520667889]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 18.0
+mouse_filter = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=2008309048]
+layout_mode = 2
+
+[node name="TilePalette" type="GridContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer/CenterContainer" unique_id=1802757211]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 8
+script = ExtResource("3_y4tts")
+wall_preview = ExtResource("4_cfu5o")
+disable_scene_processing = false
+
+[node name="RightContainer" type="VBoxContainer" parent="UI/MarginContainer/HBoxContainer" unique_id=668262130]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BaseLayer" type="TileMapLayer" parent="." unique_id=1252655411]
+unique_name_in_owner = true
+tile_set = ExtResource("5_q6qd4")
+navigation_enabled = false
+script = ExtResource("6_qalbb")
+
+[node name="GameplayLayer" type="TileMapLayer" parent="." unique_id=1561531278]
+unique_name_in_owner = true
+tile_set = ExtResource("7_7xplb")
+navigation_enabled = false
+script = ExtResource("6_qalbb")
+
+[node name="FireLayer" type="TileMapLayer" parent="." unique_id=975881391 node_paths=PackedStringArray("walls")]
+unique_name_in_owner = true
+tile_set = ExtResource("8_tpay8")
+navigation_enabled = false
+script = ExtResource("9_vixgd")
+walls = NodePath("../WallsLayer")
+fire_spawn_audio = ExtResource("10_d4jxa")
+speed = 0.1
+
+[node name="ActorsLayer" type="TileMapLayer" parent="." unique_id=1834298986]
+unique_name_in_owner = true
+tile_set = ExtResource("11_lpjpo")
+collision_enabled = false
+navigation_enabled = false
+script = ExtResource("6_qalbb")
+
+[node name="WallsLayer" type="Node2D" parent="." unique_id=498308178 node_paths=PackedStringArray("tile_map_layer")]
+unique_name_in_owner = true
+script = ExtResource("12_1scyg")
+wall_width = 8
+wall_color = Color(0.001954318, 0.005965765, 0.0077388594, 1)
+tile_map_layer = NodePath("../FireLayer")
+metadata/_custom_type_script = "uid://ds186w0jau8in"
+
+[node name="Preview" type="Node2D" parent="." unique_id=2122712766]
+
+[node name="Grid" type="Node2D" parent="Preview" unique_id=857421058 node_paths=PackedStringArray("tile_map_layer")]
+z_index = 90
+script = ExtResource("14_6v45n")
+grid_color = Color(1, 1, 1, 0.1)
+tile_map_layer = NodePath("../DrawPreviewLayer")
+
+[node name="Walls" type="Node2D" parent="Preview" unique_id=1540067249]
+script = ExtResource("14_8r1wy")
+
+[node name="DrawPreviewLayer" type="TileMapLayer" parent="Preview" unique_id=1717932972]
+occlusion_enabled = false
+script = ExtResource("13_eusct")
+metadata/_custom_type_script = "uid://dxo3c0ihvwh8p"
+
+[node name="Editor" type="Node2D" parent="." unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers", "walls_layers", "grid_overlay", "preview_layer", "tile_palette", "walls_overlay")]
+script = ExtResource("15_j4mki")
+tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath("../ActorsLayer"), NodePath("../GameplayLayer")]
+walls_layers = [NodePath("../WallsLayer")]
+grid_overlay = NodePath("../Preview/Grid")
+preview_layer = NodePath("../Preview/DrawPreviewLayer")
+tile_palette = NodePath("../UI/MarginContainer/HBoxContainer/CenterContainer/CenterContainer/TilePalette")
+walls_overlay = NodePath("../Preview/Walls")

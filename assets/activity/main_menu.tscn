@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b8gm5d86j77to"]
+
+[ext_resource type="Script" uid="uid://r6ha7llbw8fg" path="res://assets/activity/main_menu.gd" id="1_cvs7d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7diy"]
+font_size = 32
+font_color = Color(1, 0, 0, 1)
+outline_size = 4
+outline_color = Color(1, 1, 0, 1)
+shadow_size = 32
+shadow_color = Color(0, 0, 0, 0.3647059)
+
+[node name="MainMenu" type="CanvasLayer" unique_id=1054151970]
+script = ExtResource("1_cvs7d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=79210811]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1192378335]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1242933623]
+layout_mode = 2
+text = "Evacuation simulator"
+label_settings = SubResource("LabelSettings_t7diy")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=415814398]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1101775706]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=78399064]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1697349907]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Play"
+
+[node name="Designer" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=851107789]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Designer"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1145062645]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Settings"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1361311336]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Exit"
+
+[node name="Control" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1352901411]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.5

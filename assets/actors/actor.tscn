@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://d07066nauwey1"]
+
+[ext_resource type="Script" uid="uid://b18tskqeufkdd" path="res://assets/actors/actor.gd" id="1_putqx"]
+[ext_resource type="Texture2D" uid="uid://cd0ol5xe86wln" path="res://assets/sprites/character_anim.png" id="2_crv48"]
+[ext_resource type="Script" uid="uid://bydxoqne54jm3" path="res://assets/actors/actor_simple_impulse_behaivor.gd" id="2_qg31e"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qdlv5"]
+friction = 0.0
+bounce = 0.36
+
+[sub_resource type="Resource" id="Resource_gvo0h"]
+script = ExtResource("2_qg31e")
+metadata/_custom_type_script = "uid://bydxoqne54jm3"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2eim"]
+atlas = ExtResource("2_crv48")
+region = Rect2(0, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujfqy"]
+atlas = ExtResource("2_crv48")
+region = Rect2(13, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdlv5"]
+atlas = ExtResource("2_crv48")
+region = Rect2(26, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkxyu"]
+atlas = ExtResource("2_crv48")
+region = Rect2(39, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fphxj"]
+atlas = ExtResource("2_crv48")
+region = Rect2(52, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqaxa"]
+atlas = ExtResource("2_crv48")
+region = Rect2(65, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5usj"]
+atlas = ExtResource("2_crv48")
+region = Rect2(78, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otm8r"]
+atlas = ExtResource("2_crv48")
+region = Rect2(91, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4xlo"]
+atlas = ExtResource("2_crv48")
+region = Rect2(104, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvw4a"]
+atlas = ExtResource("2_crv48")
+region = Rect2(117, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew6cl"]
+atlas = ExtResource("2_crv48")
+region = Rect2(130, 0, 13, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km2eh"]
+atlas = ExtResource("2_crv48")
+region = Rect2(143, 0, 13, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7diy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2eim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujfqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdlv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkxyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fphxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqaxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5usj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otm8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4xlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvw4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew6cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km2eh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t7diy"]
+radius = 7.0
+height = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7diy"]
+font_size = 6
+font_color = Color(1, 0, 0.09019608, 1)
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=947499980]
+collision_layer = 2
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_qdlv5")
+inertia = 1.55
+can_sleep = false
+lock_rotation = true
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_putqx")
+behavior = SubResource("Resource_gvo0h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1658235831]
+sprite_frames = SubResource("SpriteFrames_t7diy")
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1418135324]
+shape = SubResource("CapsuleShape2D_t7diy")
+
+[node name="Label" type="Label" parent="." unique_id=748730544]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -19.0
+offset_right = 12.0
+grow_vertical = 0
+text = "AAA"
+label_settings = SubResource("LabelSettings_t7diy")

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cpar0lu2wstkw"]
+
+[ext_resource type="Script" uid="uid://dtwmt73u4esk6" path="res://assets/activity/simulation.gd" id="1_7a1rt"]
+[ext_resource type="PackedScene" uid="uid://cp7eqdko261su" path="res://assets/map/map.tscn" id="4_adr8l"]
+
+[node name="Simulation" type="CanvasLayer" unique_id=520588032]
+follow_viewport_enabled = true
+script = ExtResource("1_7a1rt")
+
+[node name="Map" parent="." unique_id=1364593442 instance=ExtResource("4_adr8l")]
+unique_name_in_owner = true
+
+[node name="RunSimulation" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="0" unique_id=1250627999]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Run simulation"
+
+[node name="StopSimulation" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="1" unique_id=540906986]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Stop simulation"
+
+[node name="Editor" parent="Map" index="7" unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers", "walls_layers")]
+tile_map_layers = [NodePath("../GameplayLayer")]
+walls_layers = []
+
+[editable path="Map"]

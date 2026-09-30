@@ -1,0 +1,33 @@
+[gd_resource type="TileSet" format=3 uid="uid://cnset5ijsjosd"]
+
+[ext_resource type="Texture2D" uid="uid://uqbbad18ekn0" path="res://assets/sprites/arrow-up.png" id="1_rxlii"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3mdcb"]
+texture = ExtResource("1_rxlii")
+texture_region_size = Vector2i(60, 60)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/custom_data_0 = Vector2(0, -1)
+0:0/0/custom_data_1 = &"arrow_up"
+0:0/1 = 1
+0:0/1/flip_v = true
+0:0/1/custom_data_0 = Vector2(0, 1)
+0:0/1/custom_data_1 = &"arrow_down"
+0:0/2 = 2
+0:0/2/transpose = true
+0:0/2/custom_data_0 = Vector2(-1, 0)
+0:0/2/custom_data_1 = &"arrow_left"
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/transpose = true
+0:0/3/custom_data_0 = Vector2(1, 0)
+0:0/3/custom_data_1 = &"arrow_right"
+
+[resource]
+tile_size = Vector2i(60, 60)
+custom_data_layer_0/name = "direction"
+custom_data_layer_0/type = 5
+custom_data_layer_1/name = "tile_name"
+custom_data_layer_1/type = 21
+sources/0 = SubResource("TileSetAtlasSource_3mdcb")
+tile_proxies/coords_level = [[0, Vector2i(0, 0)], [1, Vector2i(0, 0)], [4, Vector2i(0, 0)], [1, Vector2i(1, 0)], [5, Vector2i(0, 0)], [1, Vector2i(2, 0)], [6, Vector2i(0, 0)], [1, Vector2i(3, 0)]]

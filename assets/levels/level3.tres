@@ -1,0 +1,251 @@
+[gd_resource type="Resource" script_class="MapData" format=3]
+
+[ext_resource type="Script" path="res://assets/map/actor_map_decription.gd" id="1_4mnh7"]
+[ext_resource type="Script" path="res://assets/map/map_data.gd" id="2_ux34w"]
+
+[sub_resource type="Resource" id="Resource_6pm7u"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.8333335, 3.8)
+
+[sub_resource type="Resource" id="Resource_baon0"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(2.1666667, 5.8)
+
+[sub_resource type="Resource" id="Resource_0krc1"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(2.5, 1.8)
+
+[sub_resource type="Resource" id="Resource_is6en"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(3.5, 2.2)
+
+[sub_resource type="Resource" id="Resource_ugg06"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.1666665, 1.8)
+
+[sub_resource type="Resource" id="Resource_qqni8"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(2.1666667, 4.6)
+
+[sub_resource type="Resource" id="Resource_o8qvk"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(2.8333333, 5.4)
+
+[sub_resource type="Resource" id="Resource_tadx8"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(2.8333333, 5)
+
+[sub_resource type="Resource" id="Resource_wnxs8"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(3.1666667, 6.2)
+
+[sub_resource type="Resource" id="Resource_oc4pc"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.8333334, 11.8)
+
+[sub_resource type="Resource" id="Resource_57ayi"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.1666666, 10.6)
+
+[sub_resource type="Resource" id="Resource_7630x"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.8333334, 10.6)
+
+[sub_resource type="Resource" id="Resource_aafal"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.1666666, 9.8)
+
+[sub_resource type="Resource" id="Resource_rhevf"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.1666666, 9.4)
+
+[sub_resource type="Resource" id="Resource_5qtnl"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.8333334, 10.2)
+
+[sub_resource type="Resource" id="Resource_653n7"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.1666666, 12.2)
+
+[sub_resource type="Resource" id="Resource_3qlqj"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.1666665, 4.6)
+
+[sub_resource type="Resource" id="Resource_din7n"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.8333335, 4.6)
+
+[sub_resource type="Resource" id="Resource_asegw"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.833333, 2.6)
+
+[sub_resource type="Resource" id="Resource_ulk2m"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(11.5, 2.2)
+
+[sub_resource type="Resource" id="Resource_07y0x"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(11.833333, 1.8)
+
+[sub_resource type="Resource" id="Resource_26n3e"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(12.166667, 3)
+
+[sub_resource type="Resource" id="Resource_xfmkk"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.166667, 5.4)
+
+[sub_resource type="Resource" id="Resource_hiiu1"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.166667, 4.6)
+
+[sub_resource type="Resource" id="Resource_yvoyj"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.833333, 5)
+
+[sub_resource type="Resource" id="Resource_k6f2p"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.166667, 5.8)
+
+[sub_resource type="Resource" id="Resource_p48up"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(7.8333335, 5)
+
+[sub_resource type="Resource" id="Resource_uchin"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.5, 5)
+
+[sub_resource type="Resource" id="Resource_ma15r"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.5, 9.4)
+
+[sub_resource type="Resource" id="Resource_1mre6"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(5.8333335, 9.4)
+
+[sub_resource type="Resource" id="Resource_2sy6w"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.8333335, 8.6)
+
+[sub_resource type="Resource" id="Resource_xkbgr"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.5, 7)
+
+[sub_resource type="Resource" id="Resource_etbwl"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(7.5, 7)
+
+[sub_resource type="Resource" id="Resource_avev8"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.833333, 7)
+
+[sub_resource type="Resource" id="Resource_cvc3a"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.166667, 11)
+
+[sub_resource type="Resource" id="Resource_bp2rp"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(7.5, 9.8)
+
+[sub_resource type="Resource" id="Resource_ribd2"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.5, 7.8)
+
+[sub_resource type="Resource" id="Resource_8jkpb"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.5, 9)
+
+[sub_resource type="Resource" id="Resource_qgoeh"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.166667, 9.4)
+
+[sub_resource type="Resource" id="Resource_suwng"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.5, 12.2)
+
+[sub_resource type="Resource" id="Resource_cuars"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(7.1666665, 12.2)
+
+[sub_resource type="Resource" id="Resource_wvwn0"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.5, 10.6)
+
+[sub_resource type="Resource" id="Resource_oyens"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(11.5, 9.8)
+
+[sub_resource type="Resource" id="Resource_3ww04"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(10.833333, 8.6)
+
+[sub_resource type="Resource" id="Resource_bgb3n"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.8333334, 3.4)
+
+[sub_resource type="Resource" id="Resource_23xbw"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(4.5, 2.6)
+
+[sub_resource type="Resource" id="Resource_0lbkt"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(1.1666666, 11.8)
+
+[sub_resource type="Resource" id="Resource_fdldv"]
+script = ExtResource("1_4mnh7")
+type = &"actor"
+position = Vector2(8.5, 2.2)
+
+[resource]
+script = ExtResource("2_ux34w")
+actors = Array[ExtResource("1_4mnh7")]([SubResource("Resource_6pm7u"), SubResource("Resource_baon0"), SubResource("Resource_0krc1"), SubResource("Resource_is6en"), SubResource("Resource_ugg06"), SubResource("Resource_qqni8"), SubResource("Resource_o8qvk"), SubResource("Resource_tadx8"), SubResource("Resource_wnxs8"), SubResource("Resource_oc4pc"), SubResource("Resource_57ayi"), SubResource("Resource_7630x"), SubResource("Resource_aafal"), SubResource("Resource_rhevf"), SubResource("Resource_5qtnl"), SubResource("Resource_653n7"), SubResource("Resource_3qlqj"), SubResource("Resource_din7n"), SubResource("Resource_asegw"), SubResource("Resource_ulk2m"), SubResource("Resource_07y0x"), SubResource("Resource_26n3e"), SubResource("Resource_xfmkk"), SubResource("Resource_hiiu1"), SubResource("Resource_yvoyj"), SubResource("Resource_k6f2p"), SubResource("Resource_p48up"), SubResource("Resource_uchin"), SubResource("Resource_ma15r"), SubResource("Resource_1mre6"), SubResource("Resource_2sy6w"), SubResource("Resource_xkbgr"), SubResource("Resource_etbwl"), SubResource("Resource_avev8"), SubResource("Resource_cvc3a"), SubResource("Resource_bp2rp"), SubResource("Resource_ribd2"), SubResource("Resource_8jkpb"), SubResource("Resource_qgoeh"), SubResource("Resource_suwng"), SubResource("Resource_cuars"), SubResource("Resource_wvwn0"), SubResource("Resource_oyens"), SubResource("Resource_3ww04"), SubResource("Resource_bgb3n"), SubResource("Resource_23xbw"), SubResource("Resource_0lbkt"), SubResource("Resource_fdldv")])
+fire = Array[Vector2i]([Vector2i(6, 6), Vector2i(6, 11), Vector2i(7, 3)])
+exits = Array[Vector2i]([Vector2i(3, 13), Vector2i(6, 1), Vector2i(10, 1)])
+walls = Array[Vector2i]([Vector2i(1, 13), Vector2i(2, 13), Vector2i(2, 13), Vector2i(3, 13), Vector2i(4, 13), Vector2i(5, 13), Vector2i(5, 13), Vector2i(6, 13), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(6, 2), Vector2i(7, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(10, 2), Vector2i(11, 2), Vector2i(11, 1), Vector2i(12, 1), Vector2i(12, 1), Vector2i(13, 1), Vector2i(13, 1), Vector2i(14, 1), Vector2i(6, 14), Vector2i(7, 14), Vector2i(7, 14), Vector2i(8, 14), Vector2i(8, 14), Vector2i(9, 14), Vector2i(9, 14), Vector2i(10, 14), Vector2i(10, 14), Vector2i(11, 14), Vector2i(11, 14), Vector2i(12, 14), Vector2i(12, 14), Vector2i(13, 14), Vector2i(13, 14), Vector2i(14, 14), Vector2i(5, 2), Vector2i(6, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(2, 4), Vector2i(3, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(2, 7), Vector2i(3, 7), Vector2i(4, 4), Vector2i(5, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(4, 7), Vector2i(5, 7), Vector2i(5, 7), Vector2i(6, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(8, 4), Vector2i(9, 4), Vector2i(9, 4), Vector2i(10, 4), Vector2i(9, 7), Vector2i(10, 7), Vector2i(8, 7), Vector2i(9, 7), Vector2i(4, 8), Vector2i(5, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(5, 12), Vector2i(6, 12), Vector2i(4, 12), Vector2i(5, 12), Vector2i(6, 12), Vector2i(7, 12), Vector2i(7, 8), Vector2i(8, 8), Vector2i(8, 8), Vector2i(9, 8), Vector2i(9, 8), Vector2i(10, 8), Vector2i(7, 12), Vector2i(8, 12), Vector2i(8, 12), Vector2i(9, 12), Vector2i(10, 8), Vector2i(11, 8), Vector2i(11, 8), Vector2i(12, 8), Vector2i(12, 8), Vector2i(13, 8), Vector2i(12, 12), Vector2i(13, 12), Vector2i(10, 7), Vector2i(11, 7), Vector2i(11, 7), Vector2i(12, 7), Vector2i(12, 4), Vector2i(13, 4), Vector2i(11, 4), Vector2i(12, 4), Vector2i(10, 4), Vector2i(11, 4), Vector2i(2, 3), Vector2i(3, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 4), Vector2i(8, 4), Vector2i(3, 12), Vector2i(3, 13), Vector2i(1, 12), Vector2i(1, 13), Vector2i(1, 11), Vector2i(1, 12), Vector2i(1, 10), Vector2i(1, 11), Vector2i(1, 9), Vector2i(1, 10), Vector2i(1, 8), Vector2i(1, 9), Vector2i(1, 7), Vector2i(1, 8), Vector2i(1, 6), Vector2i(1, 7), Vector2i(1, 5), Vector2i(1, 6), Vector2i(1, 4), Vector2i(1, 5), Vector2i(1, 3), Vector2i(1, 4), Vector2i(1, 2), Vector2i(1, 3), Vector2i(1, 1), Vector2i(1, 2), Vector2i(14, 1), Vector2i(14, 2), Vector2i(14, 2), Vector2i(14, 3), Vector2i(14, 3), Vector2i(14, 4), Vector2i(14, 4), Vector2i(14, 5), Vector2i(14, 5), Vector2i(14, 6), Vector2i(14, 6), Vector2i(14, 7), Vector2i(14, 7), Vector2i(14, 8), Vector2i(14, 8), Vector2i(14, 9), Vector2i(14, 9), Vector2i(14, 10), Vector2i(14, 10), Vector2i(14, 11), Vector2i(14, 11), Vector2i(14, 12), Vector2i(14, 12), Vector2i(14, 13), Vector2i(14, 13), Vector2i(14, 14), Vector2i(6, 13), Vector2i(6, 14), Vector2i(2, 2), Vector2i(2, 3), Vector2i(4, 4), Vector2i(4, 5), Vector2i(2, 4), Vector2i(2, 5), Vector2i(2, 5), Vector2i(2, 6), Vector2i(2, 6), Vector2i(2, 7), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 6), Vector2i(4, 7), Vector2i(7, 6), Vector2i(7, 7), Vector2i(7, 5), Vector2i(7, 6), Vector2i(7, 4), Vector2i(7, 5), Vector2i(10, 4), Vector2i(10, 5), Vector2i(10, 5), Vector2i(10, 6), Vector2i(10, 6), Vector2i(10, 7), Vector2i(3, 11), Vector2i(3, 12), Vector2i(3, 10), Vector2i(3, 11), Vector2i(3, 9), Vector2i(3, 10), Vector2i(4, 12), Vector2i(4, 13), Vector2i(4, 11), Vector2i(4, 12), Vector2i(4, 10), Vector2i(4, 11), Vector2i(4, 9), Vector2i(4, 10), Vector2i(4, 8), Vector2i(4, 9), Vector2i(7, 8), Vector2i(7, 9), Vector2i(7, 9), Vector2i(7, 10), Vector2i(7, 10), Vector2i(7, 11), Vector2i(7, 11), Vector2i(7, 12), Vector2i(10, 8), Vector2i(10, 9), Vector2i(10, 9), Vector2i(10, 10), Vector2i(10, 10), Vector2i(10, 11), Vector2i(10, 11), Vector2i(10, 12), Vector2i(13, 8), Vector2i(13, 9), Vector2i(13, 9), Vector2i(13, 10), Vector2i(13, 10), Vector2i(13, 11), Vector2i(13, 11), Vector2i(13, 12), Vector2i(13, 6), Vector2i(13, 7), Vector2i(13, 5), Vector2i(13, 6), Vector2i(13, 4), Vector2i(13, 5), Vector2i(7, 3), Vector2i(7, 4), Vector2i(7, 2), Vector2i(7, 3), Vector2i(10, 3), Vector2i(10, 4)])

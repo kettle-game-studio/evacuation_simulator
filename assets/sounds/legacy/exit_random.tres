@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://c00tumiurffkh"]
+
+[ext_resource type="AudioStream" uid="uid://bmlqsrob0h4mo" path="res://assets/sounds/legacy/exit/exit-01.wav" id="1_p0rv2"]
+[ext_resource type="AudioStream" uid="uid://km2hpasqvayc" path="res://assets/sounds/legacy/exit/exit-02.wav" id="2_1ghol"]
+[ext_resource type="AudioStream" uid="uid://b6t5067wrl075" path="res://assets/sounds/legacy/exit/exit-03.wav" id="3_juoe5"]
+[ext_resource type="AudioStream" uid="uid://chgogmjj82863" path="res://assets/sounds/legacy/exit/exit-04.wav" id="4_bbwcf"]
+
+[resource]
+random_pitch = 1.066093
+streams_count = 4
+stream_0/stream = ExtResource("1_p0rv2")
+stream_1/stream = ExtResource("2_1ghol")
+stream_2/stream = ExtResource("3_juoe5")
+stream_3/stream = ExtResource("4_bbwcf")

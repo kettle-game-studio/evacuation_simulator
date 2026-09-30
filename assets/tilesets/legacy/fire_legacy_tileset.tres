@@ -1,0 +1,25 @@
+[gd_resource type="TileSet" format=3 uid="uid://ckp770obmhyrr"]
+
+[ext_resource type="Texture2D" uid="uid://b0i2v34vjnp2w" path="res://assets/sprites/fire_anim.png" id="1_jtqjn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j2eim"]
+texture = ExtResource("1_jtqjn")
+texture_region_size = Vector2i(60, 60)
+0:0/animation_speed = 6.0
+0:0/animation_mode = 1
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/0 = 0
+0:0/0/custom_data_0 = &"fire"
+
+[resource]
+tile_size = Vector2i(60, 60)
+custom_data_layer_0/name = "tile_name"
+custom_data_layer_0/type = 21
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
+sources/1 = SubResource("TileSetAtlasSource_j2eim")

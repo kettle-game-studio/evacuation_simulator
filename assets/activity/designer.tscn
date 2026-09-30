@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dne4ocjgvf3eq"]
+
+[ext_resource type="Script" uid="uid://bq4y3fxorou5u" path="res://assets/activity/designer.gd" id="1_wxbmu"]
+[ext_resource type="PackedScene" uid="uid://cp7eqdko261su" path="res://assets/map/map.tscn" id="2_bkpp8"]
+
+[node name="Designer" type="CanvasLayer" unique_id=59384863]
+follow_viewport_enabled = true
+script = ExtResource("1_wxbmu")
+
+[node name="OpenMapDialog" type="FileDialog" parent="." unique_id=978743972]
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.tres,*.res;Godot Resources;application/octet-stream")
+
+[node name="ImportJSONMapDialog" type="FileDialog" parent="." unique_id=722308852]
+title = "Open a File"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.json;JSON;application/json")
+
+[node name="SaveAsMapDialog" type="FileDialog" parent="." unique_id=1952335969]
+access = 2
+filters = PackedStringArray("*.tres,*.res;Godot Resources;application/octet-stream")
+
+[node name="Map" parent="." unique_id=1364593442 instance=ExtResource("2_bkpp8")]
+unique_name_in_owner = true
+
+[node name="New" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="0" unique_id=1702580902]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New"
+
+[node name="Open" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="1" unique_id=628521443]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Open"
+
+[node name="Save" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="2" unique_id=1531088069]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="SaveAs" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="3" unique_id=1962308980]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save as..."
+
+[node name="Play" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="4" unique_id=616454942]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="ImportJSON" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="5" unique_id=161528339]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Import JSON"
+
+[node name="Editor" parent="Map" index="7" unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers")]
+tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath("../ActorsLayer")]
+
+[editable path="Map"]

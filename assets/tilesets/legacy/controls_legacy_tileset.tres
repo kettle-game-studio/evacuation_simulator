@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" format=3 uid="uid://b2wkmlfjmg4n4"]
+
+[ext_resource type="Texture2D" uid="uid://dsxd1va7geod8" path="res://assets/sprites/exit.png" id="1_8v2x1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_836ik"]
+resource_name = "exit"
+texture = ExtResource("1_8v2x1")
+texture_region_size = Vector2i(60, 60)
+0:0/0 = 0
+0:0/0/custom_data_0 = &"exit"
+
+[resource]
+tile_size = Vector2i(60, 60)
+custom_data_layer_0/name = "tile_name"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_836ik")

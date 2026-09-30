@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="MapData" format=3 uid="uid://dsj2u16o7yo8r"]
+
+[ext_resource type="Script" uid="uid://y5qoj18s7g5" path="res://assets/map/actor_map_decription.gd" id="1_tr1yy"]
+[ext_resource type="Script" uid="uid://w36ern4vjdv5" path="res://assets/map/map_data.gd" id="2_g5oof"]
+
+[sub_resource type="Resource" id="Resource_h0oj8"]
+script = ExtResource("1_tr1yy")
+type = &"actor"
+position = Vector2(-0.16666667, 2.6)
+
+[resource]
+script = ExtResource("2_g5oof")
+actors = Array[ExtResource("1_tr1yy")]([SubResource("Resource_h0oj8")])
+fire = Array[Vector2i]([Vector2i(-6, 2)])
+exits = Array[Vector2i]([Vector2i(5, 2)])
+walls = Array[Vector2i]([Vector2i(-3, 3), Vector2i(-2, 3), Vector2i(-4, 3), Vector2i(-3, 3), Vector2i(-5, 3), Vector2i(-4, 3), Vector2i(-6, 3), Vector2i(-5, 3), Vector2i(-6, 2), Vector2i(-6, 3), Vector2i(-6, 2), Vector2i(-5, 2), Vector2i(-5, 2), Vector2i(-4, 2), Vector2i(-4, 2), Vector2i(-3, 2), Vector2i(-3, 2), Vector2i(-2, 2), Vector2i(-2, 2), Vector2i(-1, 2), Vector2i(-1, 2), Vector2i(0, 2), Vector2i(0, 2), Vector2i(1, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(6, 2), Vector2i(6, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(0, 3), Vector2i(1, 3), Vector2i(-2, 3), Vector2i(-1, 3), Vector2i(-1, 3), Vector2i(0, 3)])

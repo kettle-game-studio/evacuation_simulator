@@ -1,0 +1,22 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://biy7fe46ims7e"]
+
+[ext_resource type="AudioStream" uid="uid://b7d8isb1fwfkl" path="res://assets/sounds/legacy/die/die-01.wav" id="1_1atyo"]
+[ext_resource type="AudioStream" uid="uid://0t6udu451f1e" path="res://assets/sounds/legacy/die/die-02.wav" id="2_qmohf"]
+[ext_resource type="AudioStream" uid="uid://u2fjtmcmuu0p" path="res://assets/sounds/legacy/die/die-03.wav" id="3_ddeml"]
+[ext_resource type="AudioStream" uid="uid://bneh4x1alg5vf" path="res://assets/sounds/legacy/die/die-04.wav" id="4_54chl"]
+[ext_resource type="AudioStream" uid="uid://bmsgxw7rkuyan" path="res://assets/sounds/legacy/die/die-05.wav" id="5_kkmda"]
+[ext_resource type="AudioStream" uid="uid://bmtujt5wphy01" path="res://assets/sounds/legacy/die/die-06.wav" id="6_hm6p0"]
+[ext_resource type="AudioStream" uid="uid://b7aood5eq26t" path="res://assets/sounds/legacy/die/die-07.wav" id="7_sk705"]
+[ext_resource type="AudioStream" uid="uid://duyyi6p3tl43r" path="res://assets/sounds/legacy/die/die-08.wav" id="8_ua0bx"]
+
+[resource]
+random_pitch = 1.066093
+streams_count = 8
+stream_0/stream = ExtResource("1_1atyo")
+stream_1/stream = ExtResource("2_qmohf")
+stream_2/stream = ExtResource("3_ddeml")
+stream_3/stream = ExtResource("4_54chl")
+stream_4/stream = ExtResource("5_kkmda")
+stream_5/stream = ExtResource("6_hm6p0")
+stream_6/stream = ExtResource("7_sk705")
+stream_7/stream = ExtResource("8_ua0bx")
