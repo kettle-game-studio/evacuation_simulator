@@ -63,9 +63,12 @@ func _scene_tile_name(scene: PackedScene) -> StringName:
 
 	return StringName(path.get_file().get_basename())
 
-
+## name == &"" -> erase
 @warning_ignore("shadowed_variable_base_class")
 func set_cell_by_name(coords: Vector2i, name: StringName) -> void:
+	if name == &"":
+		set_cell(coords, -1)
+		return
 	var tile := _index[name]
 	set_cell(coords, tile.source_id, tile.atlas_coordinates, tile.alternative_id)
 

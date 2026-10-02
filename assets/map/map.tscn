@@ -133,6 +133,7 @@ script = ExtResource("13_eusct")
 metadata/_custom_type_script = "uid://dxo3c0ihvwh8p"
 
 [node name="Editor" type="Node2D" parent="." unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers", "walls_layers", "grid_overlay", "preview_layer", "tile_palette", "walls_overlay")]
+unique_name_in_owner = true
 script = ExtResource("15_j4mki")
 tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath("../ActorsLayer"), NodePath("../GameplayLayer")]
 walls_layers = [NodePath("../WallsLayer")]

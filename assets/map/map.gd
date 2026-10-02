@@ -9,6 +9,7 @@ extends Node2D
 @onready var actors_layer: TileMapLayerIndexed = %ActorsLayer
 @export var exit_sound: AudioStream
 @export var die_sound: AudioStream
+@onready var editor: TileMapEditor = %Editor
 
 func clear_map() -> void:
 	base_layer.clear()
@@ -44,8 +45,10 @@ func resume_simulation():
 	fire_layer.playing = true
 	actors_layer.process_mode = Node.PROCESS_MODE_INHERIT
 
-func draw_map(map_data: MapData) -> void:
+func draw_map(map_data: MapData, new_map: bool = true) -> void:
 	clear_map()
+	if new_map:
+		editor.undo_redo.clear_history()
 	for exit in map_data.get_exits():
 		base_layer.set_cell_by_name(exit, &"exit")
 	for fire in map_data.get_fire():

@@ -33,7 +33,7 @@ func _stop() -> void:
 	run_simulation_button.visible = true
 	stop_simulation_button.visible = false
 	map.pause_simulation()
-	map.draw_map(map_data)
+	map.draw_map(map_data, false)
 	map.show_actors(false)
 	map.show_fire(false)
 	editor.show_editor(true)

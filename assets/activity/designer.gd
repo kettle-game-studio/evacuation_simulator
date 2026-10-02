@@ -2,7 +2,7 @@ class_name Designer
 extends Activity
 
 var map_data: MapData = MapData.new()
-
+@onready var editor: TileMapEditor = $Map/Editor
 @onready var map: Map = %Map
 
 @onready var new: Button = %New

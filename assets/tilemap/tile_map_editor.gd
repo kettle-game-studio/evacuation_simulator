@@ -8,6 +8,7 @@ extends Node2D
 @export var tile_palette: TilePalette
 @export var walls_overlay: TileWallOverlay
 
+var undo_redo = UndoRedo.new()
 
 func _ready() -> void:
 	_build_palette()
@@ -48,6 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		elif event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
 			_erase_at_mouse()
+	elif event.is_action_pressed("ui_undo"):
+		undo_redo.undo()
+	elif event.is_action_pressed("ui_redo"):
+		undo_redo.redo()
 
 func _build_palette() -> void:
 	for tile_map_layer in tile_map_layers:
@@ -62,13 +67,24 @@ func _paint_at_mouse() -> void:
 	if selection is TilePalette.TilePaletteTileLayerSelection:
 		var cell := _get_mouse_cell()
 		var layer := (selection as TilePalette.TilePaletteTileLayerSelection).layer
-		layer.set_cell_by_name(cell, selection.name)
+		var current_cell := layer.get_cell_name(cell)
+		if current_cell == selection.name:
+			return
+		undo_redo.create_action("Set cell")
+		undo_redo.add_do_method(layer.set_cell_by_name.bind(cell, selection.name))
+		undo_redo.add_undo_method(layer.set_cell_by_name.bind(cell, current_cell))
+		undo_redo.commit_action()
 	elif selection is TilePalette.TilePaletteWallLayerSelection:
 		var layer := (selection as TilePalette.TilePaletteWallLayerSelection).layer
 		var wall := layer.local_to_grid_line(layer.get_local_mouse_position())
 		if wall.is_empty():
 			return
-		layer.add_wall(wall[0], wall[1])
+		if layer.has_wall(wall[0], wall[1]):
+			return
+		undo_redo.create_action("Set wall")
+		undo_redo.add_do_method(layer.add_wall.bind(wall[0], wall[1]))
+		undo_redo.add_undo_method(layer.remove_wall.bind(wall[0], wall[1]))
+		undo_redo.commit_action()
 
 
 func _erase_at_mouse() -> void:
@@ -76,13 +92,24 @@ func _erase_at_mouse() -> void:
 	if selection is TilePalette.TilePaletteTileLayerSelection:
 		var cell := _get_mouse_cell()
 		var layer := (selection as TilePalette.TilePaletteTileLayerSelection).layer
+		var current_cell := layer.get_cell_name(cell)
+		if current_cell == "":
+			return
+		undo_redo.create_action("Erase cell")
+		undo_redo.add_do_method(layer.set_cell_by_name.bind(cell, ""))
+		undo_redo.add_undo_method(layer.set_cell_by_name.bind(cell, current_cell))
 		layer.set_cell(cell, -1)
 	elif selection is TilePalette.TilePaletteWallLayerSelection:
 		var layer := (selection as TilePalette.TilePaletteWallLayerSelection).layer
 		var wall := layer.local_to_grid_line(layer.get_local_mouse_position())
 		if wall.is_empty():
 			return
-		layer.remove_wall(wall[0], wall[1])
+		if not layer.has_wall(wall[0], wall[1]):
+			return
+		undo_redo.create_action("Erase wall")
+		undo_redo.add_do_method(layer.remove_wall.bind(wall[0], wall[1]))
+		undo_redo.add_undo_method(layer.add_wall.bind(wall[0], wall[1]))
+		undo_redo.commit_action()
 
 
 func _get_mouse_cell() -> Vector2i:
