@@ -90,6 +90,7 @@ func get_tile_data(name: StringName) -> IndexedTileData:
 func play_audio(cell: Vector2i, stream: AudioStream) -> void:
 	var audio := AudioStreamPlayer2D.new()
 	add_child(audio)
+	audio.process_mode = Node.PROCESS_MODE_PAUSABLE
 	audio.position = map_to_local(cell)
 	audio.stream = stream
 	audio.play()

@@ -98,7 +98,7 @@ func _erase_at_mouse() -> void:
 		undo_redo.create_action("Erase cell")
 		undo_redo.add_do_method(layer.set_cell_by_name.bind(cell, ""))
 		undo_redo.add_undo_method(layer.set_cell_by_name.bind(cell, current_cell))
-		layer.set_cell(cell, -1)
+		undo_redo.commit_action()
 	elif selection is TilePalette.TilePaletteWallLayerSelection:
 		var layer := (selection as TilePalette.TilePaletteWallLayerSelection).layer
 		var wall := layer.local_to_grid_line(layer.get_local_mouse_position())
