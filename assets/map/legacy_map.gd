@@ -45,7 +45,7 @@ func get_actors() -> Array[ActorMapDescription]:
 	var actors: Array[ActorMapDescription] = []
 	for pos in _get_array("actors"):
 		var n := ActorMapDescription.new()
-		n.position = Vector2(pos["x"]/50, pos["y"]/50)
+		n.position = Vector2(pos["x"]/50+0.5, pos["y"]/50+0.5)
 		n.type = "actor"
 		actors.push_back(n)
 	return actors

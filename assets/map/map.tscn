@@ -17,15 +17,15 @@
 [ext_resource type="Script" uid="uid://csfa25tx37ai0" path="res://assets/tilemap/tile_editor_overview.gd" id="13_eusct"]
 [ext_resource type="Script" uid="uid://b31ulj8ad4i0g" path="res://assets/tilemap/tile_grid_overlay.gd" id="14_6v45n"]
 [ext_resource type="Script" uid="uid://bebuqxkposugh" path="res://assets/tilemap/walls_preview.gd" id="14_8r1wy"]
+[ext_resource type="Script" uid="uid://c0bwrom3qsdse" path="res://assets/actors/actors_layer.gd" id="14_q6qd4"]
 [ext_resource type="Script" uid="uid://bwmgbu4vu7maf" path="res://assets/tilemap/tile_map_editor.gd" id="15_j4mki"]
 
 [node name="Map" type="Node2D" unique_id=1364593442]
 script = ExtResource("1_8r1wy")
-exit_sound = ExtResource("2_cfu5o")
-die_sound = ExtResource("3_q6qd4")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1065751713]
 unique_name_in_owner = true
+layer = 2
 script = ExtResource("2_yoxng")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI" unique_id=1602046411]
@@ -58,16 +58,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
 
+[node name="Header" type="CenterContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=847106789]
+layout_mode = 2
+
 [node name="Control" type="Control" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=1520667889]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 18.0
 mouse_filter = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=2008309048]
+[node name="Footer" type="CenterContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer" unique_id=2008309048]
 layout_mode = 2
 
-[node name="TilePalette" type="GridContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer/CenterContainer" unique_id=1802757211]
+[node name="TilePalette" type="GridContainer" parent="UI/MarginContainer/HBoxContainer/CenterContainer/Footer" unique_id=1802757211]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 8
@@ -106,7 +109,9 @@ unique_name_in_owner = true
 tile_set = ExtResource("11_lpjpo")
 collision_enabled = false
 navigation_enabled = false
-script = ExtResource("6_qalbb")
+script = ExtResource("14_q6qd4")
+exit_sound = ExtResource("2_cfu5o")
+die_sound = ExtResource("3_q6qd4")
 
 [node name="WallsLayer" type="Node2D" parent="." unique_id=498308178 node_paths=PackedStringArray("tile_map_layer")]
 unique_name_in_owner = true
@@ -139,5 +144,5 @@ tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath(
 walls_layers = [NodePath("../WallsLayer")]
 grid_overlay = NodePath("../Preview/Grid")
 preview_layer = NodePath("../Preview/DrawPreviewLayer")
-tile_palette = NodePath("../UI/MarginContainer/HBoxContainer/CenterContainer/CenterContainer/TilePalette")
+tile_palette = NodePath("../UI/MarginContainer/HBoxContainer/CenterContainer/Footer/TilePalette")
 walls_overlay = NodePath("../Preview/Walls")

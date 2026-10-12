@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dne4ocjgvf3eq" path="res://assets/activity/designer.tscn" id="3_836ik"]
 [ext_resource type="PackedScene" uid="uid://b8gm5d86j77to" path="res://assets/activity/main_menu.tscn" id="3_j2eim"]
 [ext_resource type="PackedScene" uid="uid://cpar0lu2wstkw" path="res://assets/activity/simulation.tscn" id="4_836ik"]
+[ext_resource type="PackedScene" uid="uid://v078j0e1akkj" path="res://assets/activity/levels_overview.tscn" id="4_ujfqy"]
 [ext_resource type="Script" uid="uid://bun18fx80la54" path="res://assets/camera.gd" id="8_tkxyu"]
 
 [node name="Main" type="Node" unique_id=1167367704 node_paths=PackedStringArray("camera")]
@@ -16,6 +17,9 @@ position_smoothing_enabled = true
 script = ExtResource("8_tkxyu")
 
 [node name="MainMenu" parent="." unique_id=1054151970 instance=ExtResource("3_j2eim")]
+
+[node name="LevelsOverview" parent="." unique_id=764377145 instance=ExtResource("4_ujfqy")]
+visible = false
 
 [node name="Designer" parent="." unique_id=186513415 instance=ExtResource("3_836ik")]
 visible = false

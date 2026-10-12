@@ -44,7 +44,7 @@ func _ready() -> void:
 	play.pressed.connect(
 		func(): 
 			_update_map()
-			(get_parent() as ActivityManager).enter_activity("Simulation", {&"map_data": map_data})
+			activity_manager.enter_activity("Simulation", {&"map_data": map_data})
 	)
 	
 	_update_buttons_state()

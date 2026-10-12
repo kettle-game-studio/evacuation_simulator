@@ -135,6 +135,13 @@ func _local_walls() -> PackedVector2Array:
 		batch.append(end)
 	return batch
 
+
+func local_to_snapped(local: Vector2) -> Vector2:
+	var start := local_to_grid(local)
+	@warning_ignore("shadowed_global_identifier")
+	var snapped := grid_to_local(start)
+	return snapped
+
 func local_to_grid_line(local: Vector2) -> Array[Vector2i]:
 	var start := local_to_grid(local)
 	@warning_ignore("shadowed_global_identifier")

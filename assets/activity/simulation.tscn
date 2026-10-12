@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpar0lu2wstkw"]
 
 [ext_resource type="Script" uid="uid://dtwmt73u4esk6" path="res://assets/activity/simulation.gd" id="1_7a1rt"]
+[ext_resource type="PackedScene" uid="uid://bvqq6xh8iyv6s" path="res://assets/ui_components/level_finished_window.tscn" id="2_f41ie"]
 [ext_resource type="PackedScene" uid="uid://cp7eqdko261su" path="res://assets/map/map.tscn" id="4_adr8l"]
 
 [node name="Simulation" type="CanvasLayer" unique_id=520588032]
@@ -9,6 +10,27 @@ script = ExtResource("1_7a1rt")
 
 [node name="Map" parent="." unique_id=1364593442 instance=ExtResource("4_adr8l")]
 unique_name_in_owner = true
+
+[node name="Counters" type="HBoxContainer" parent="Map/UI/MarginContainer/HBoxContainer/CenterContainer/Header" parent_id_path=PackedInt32Array(1364593442, 847106789) index="0" unique_id=629890880]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/CenterContainer/Header/Counters" unique_id=649932188]
+layout_mode = 2
+text = "Saved: "
+
+[node name="SavedNumber" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/CenterContainer/Header/Counters" unique_id=944189643]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/CenterContainer/Header/Counters" unique_id=1153649296]
+layout_mode = 2
+text = "Died: "
+
+[node name="DiedNumber" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/CenterContainer/Header/Counters" unique_id=1620598932]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="RunSimulation" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="0" unique_id=1250627999]
 unique_name_in_owner = true
@@ -20,6 +42,10 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Stop simulation"
+
+[node name="LevelFinishedWindow" parent="Map/UI/MarginContainer" parent_id_path=PackedInt32Array(1364593442, 1602046411) index="1" unique_id=1429793120 instance=ExtResource("2_f41ie")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="Editor" parent="Map" index="7" unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers", "walls_layers")]
 tile_map_layers = [NodePath("../GameplayLayer")]

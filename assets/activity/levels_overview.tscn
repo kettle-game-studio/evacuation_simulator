@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://v078j0e1akkj"]
+
+[ext_resource type="Script" uid="uid://baw6yf3n1874l" path="res://assets/activity/levels_overview.gd" id="1_1fyu5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7diy"]
+font_size = 48
+font_color = Color(0.059125952, 0.059125945, 0.059125938, 1)
+
+[node name="LevelsOverview" type="CanvasLayer" unique_id=764377145]
+script = ExtResource("1_1fyu5")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1486010159]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="CenterContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1088681116]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=1935428625]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer2" unique_id=827672016]
+layout_mode = 2
+text = "Exit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=886881262]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1927406886]
+layout_mode = 2
+text = "Levels"
+label_settings = SubResource("LabelSettings_t7diy")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=613922743]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelsConatiner" type="GridContainer" parent="MarginContainer/CenterContainer/VBoxContainer" unique_id=1681976602]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 8
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/CenterContainer" unique_id=446007346]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer2/Button" to="." method="_emit_exit_request"]

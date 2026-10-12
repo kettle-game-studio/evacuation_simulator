@@ -13,6 +13,7 @@ func _activity_disabled():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	play_button.pressed.connect(func(): activity_manager.enter_activity(&"LevelsOverview", {}))
 	designer_button.pressed.connect(func(): activity_manager.enter_activity(&"Designer", {}))
 
 

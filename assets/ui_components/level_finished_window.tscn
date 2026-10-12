@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bvqq6xh8iyv6s"]
+
+[ext_resource type="Script" uid="uid://jvqaxshqu4ww" path="res://assets/ui_components/level_finished_window.gd" id="1_ewmb1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7diy"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_tyavl"]
+font_size = 40
+
+[node name="LevelFinishedWindow" type="PanelContainer" unique_id=1429793120]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ewmb1")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=70783372]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=283661968]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1980723021]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=162959682]
+layout_mode = 2
+text = "Level complited!"
+label_settings = SubResource("LabelSettings_t7diy")
+horizontal_alignment = 1
+
+[node name="LevelName" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1085459063]
+layout_mode = 2
+text = "[Level name]"
+label_settings = SubResource("LabelSettings_t7diy")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=2096664599]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1287195767]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=221377065]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=118019409]
+layout_mode = 2
+text = "Saved: "
+label_settings = SubResource("LabelSettings_tyavl")
+autowrap_trim_flags = 128
+
+[node name="SavedNumber" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1603263339]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12"
+label_settings = SubResource("LabelSettings_tyavl")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1750160145]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1312490886]
+layout_mode = 2
+text = "Died: "
+label_settings = SubResource("LabelSettings_tyavl")
+
+[node name="DiedNumber" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1143578589]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12"
+label_settings = SubResource("LabelSettings_tyavl")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=854418323]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1617417286]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue editing"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3" unique_id=197449578]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"

@@ -6,10 +6,13 @@ extends Node2D
 @onready var gameplay_layer: TileMapLayerIndexed = %GameplayLayer
 @onready var fire_layer: FireSimulation = %FireLayer
 @onready var walls_layer: TileBoundaryWalls = %WallsLayer
-@onready var actors_layer: TileMapLayerIndexed = %ActorsLayer
-@export var exit_sound: AudioStream
-@export var die_sound: AudioStream
+@onready var actors_layer: ActorsLayer = %ActorsLayer
 @onready var editor: TileMapEditor = %Editor
+
+signal actors_count_changed(saved: int, died: int, total: int)
+
+func _ready() -> void:
+	actors_layer.actors_changed.connect(_on_actors_changed)
 
 func clear_map() -> void:
 	base_layer.clear()
@@ -20,21 +23,13 @@ func clear_map() -> void:
 func clear_solution() -> void:
 	gameplay_layer.clear()
 
-var saved_actors: Dictionary[Vector2i, bool] = {}
-var died_actors: Dictionary[Vector2i, bool] = {}
 
-func add_died_actor(actor: Actor) -> void:
-	died_actors[actor.id] = true
-	actors_layer.play_audio(actors_layer.local_to_map(actor.position), die_sound)
-func add_exited_actor(actor: Actor) -> void:
-	saved_actors[actor.id] = true
-	actors_layer.play_audio(actors_layer.local_to_map(actor.position), exit_sound)
+func _on_actors_changed(saved: int, died: int, total: int, _state: Actor.FinalState):
+	actors_count_changed.emit(saved, died, total)
 
 func start_simulation():
 	propagate_call("on_simulation_started", [self])
 	walls_layer.generate_physics()
-	saved_actors.clear()
-	died_actors.clear()
 	resume_simulation()
 
 func pause_simulation():
