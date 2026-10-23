@@ -14,29 +14,10 @@ signal actors_count_changed(saved: int, died: int, total: int)
 func _ready() -> void:
 	actors_layer.actors_changed.connect(_on_actors_changed)
 
-func _is_good_actor_place(graph: MapGraph, cell: Vector2i, actor_cell: Vector2i):
-	return actors_layer.get_cell_name(actor_cell) == &"" and \
-		graph.vertexes[cell].closest_fire > 1 and \
-		graph.vertexes[cell].closest_exit > 1
 
 func _debug():
 	var graph := build_inner_cell_graph()
-	if graph == null:
-		return
-	
-	var total_actors := graph.vertexes.size() * 0.5
-	var total_vertexes := graph.vertexes.size()
-	actors_layer.clear()
-	for room in graph.rooms:
-		for try in range(total_actors* room.vertexes.size() /total_vertexes):
-			var v: Vector2i = room.vertexes.pick_random()
-			var pos := base_layer.map_to_local(v)
-			var actor_coord := actors_layer.local_to_map(pos)
-			while not _is_good_actor_place(graph, v, actor_coord):
-				v = room.vertexes.pick_random()
-				pos = base_layer.map_to_local(v)
-				actor_coord = actors_layer.local_to_map(pos)
-			actors_layer.set_cell_by_name(actor_coord, "actor")
+
 	
 	#queue_redraw()
 	#await draw
@@ -228,7 +209,7 @@ func build_inner_cell_graph() -> MapGraph:
 	var wall_vertices := walls_layer.wall_vertices
 	if wall_vertices.size() < 2 or wall_vertices.size() % 2 != 0:
 		push_error("Некорректный массив wall_vertices.")
-		return null
+		return MapGraph.new()
 
 	var walls: Dictionary = {} # Vector4i -> true
 	var min_x := wall_vertices[0].x
@@ -242,7 +223,7 @@ func build_inner_cell_graph() -> MapGraph:
 
 		if start.x != end.x and start.y != end.y:
 			push_error("Стена должна быть горизонтальной или вертикальной.")
-			return null
+			return MapGraph.new()
 
 		min_x = mini(min_x, mini(start.x, end.x))
 		max_x = maxi(max_x, maxi(start.x, end.x))

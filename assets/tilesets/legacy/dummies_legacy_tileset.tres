@@ -6,7 +6,7 @@
 scenes/1/scene = ExtResource("1_7bbex")
 
 [resource]
-tile_size = Vector2i(20, 24)
+tile_size = Vector2i(20, 20)
 custom_data_layer_0/name = "tile_name"
 custom_data_layer_0/type = 21
 custom_data_layer_1/name = ""
