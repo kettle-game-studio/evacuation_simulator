@@ -14,6 +14,47 @@ signal actors_count_changed(saved: int, died: int, total: int)
 func _ready() -> void:
 	actors_layer.actors_changed.connect(_on_actors_changed)
 
+func _is_good_actor_place(graph: MapGraph, cell: Vector2i, actor_cell: Vector2i):
+	return actors_layer.get_cell_name(actor_cell) == &"" and \
+		graph.vertexes[cell].closest_fire > 1 and \
+		graph.vertexes[cell].closest_exit > 1
+
+func _debug():
+	var graph := build_inner_cell_graph()
+	if graph == null:
+		return
+	
+	var total_actors := graph.vertexes.size() * 0.5
+	var total_vertexes := graph.vertexes.size()
+	actors_layer.clear()
+	for room in graph.rooms:
+		for try in range(total_actors* room.vertexes.size() /total_vertexes):
+			var v: Vector2i = room.vertexes.pick_random()
+			var pos := base_layer.map_to_local(v)
+			var actor_coord := actors_layer.local_to_map(pos)
+			while not _is_good_actor_place(graph, v, actor_coord):
+				v = room.vertexes.pick_random()
+				pos = base_layer.map_to_local(v)
+				actor_coord = actors_layer.local_to_map(pos)
+			actors_layer.set_cell_by_name(actor_coord, "actor")
+	
+	#queue_redraw()
+	#await draw
+	for n in get_tree().get_nodes_in_group(&"debug"):
+		n.queue_free()
+	#for vertex in graph.vertexes:
+		#var data := graph.vertexes[vertex]
+		#var label := Label.new()
+		#label.add_to_group(&"debug")
+		##label.text = "{%d,%d}" % [vertex.x, vertex.y]
+		##label.text += "\n{%d}" % [data.edges.size()]
+		##label.text += "{%d|%d}" % [data.closest_exit, data.closest_fire]
+		#label.text += "{%d}" % [data.room]
+		#var pos := base_layer.map_to_local(vertex)
+		#label.position = pos - Vector2(base_layer.tile_set.tile_size) / 4
+		#label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		#add_child(label)
+
 func clear_map() -> void:
 	base_layer.clear()
 	fire_layer.clear()
@@ -137,3 +178,146 @@ func show_walls(show_layer: bool) -> void:
 	walls_layer.visible = show_layer
 func show_actors(show_layer: bool) -> void:
 	actors_layer.visible = show_layer
+
+				
+	
+const DIRS: Array[Vector2i] = [
+	Vector2i.RIGHT,
+	Vector2i.LEFT,
+	Vector2i.DOWN,
+	Vector2i.UP,
+]
+
+
+func _wall_key(a: Vector2i, b: Vector2i) -> Vector4i:
+	# Канонический ключ единичного отрезка, независимо от направления.
+	if a.x > b.x or (a.x == b.x and a.y > b.y):
+		var tmp := a
+		a = b
+		b = tmp
+
+	return Vector4i(a.x, a.y, b.x, b.y)
+
+
+func _boundary_key(cell: Vector2i, direction: Vector2i) -> Vector4i:
+	# Отрезок общей границы между cell и cell + direction.
+	if direction == Vector2i.RIGHT:
+		return _wall_key(
+			Vector2i(cell.x + 1, cell.y),
+			Vector2i(cell.x + 1, cell.y + 1)
+		)
+	if direction == Vector2i.LEFT:
+		return _wall_key(
+			Vector2i(cell.x, cell.y),
+			Vector2i(cell.x, cell.y + 1)
+		)
+	if direction == Vector2i.DOWN:
+		return _wall_key(
+			Vector2i(cell.x, cell.y + 1),
+			Vector2i(cell.x + 1, cell.y + 1)
+		)
+
+	# UP
+	return _wall_key(
+		Vector2i(cell.x, cell.y),
+		Vector2i(cell.x + 1, cell.y)
+	)
+
+
+func build_inner_cell_graph() -> MapGraph:
+	var wall_vertices := walls_layer.wall_vertices
+	if wall_vertices.size() < 2 or wall_vertices.size() % 2 != 0:
+		push_error("Некорректный массив wall_vertices.")
+		return null
+
+	var walls: Dictionary = {} # Vector4i -> true
+	var min_x := wall_vertices[0].x
+	var max_x := wall_vertices[0].x
+	var min_y := wall_vertices[0].y
+	var max_y := wall_vertices[0].y
+
+	for i in range(0, wall_vertices.size(), 2):
+		var start := wall_vertices[i]
+		var end := wall_vertices[i + 1]
+
+		if start.x != end.x and start.y != end.y:
+			push_error("Стена должна быть горизонтальной или вертикальной.")
+			return null
+
+		min_x = mini(min_x, mini(start.x, end.x))
+		max_x = maxi(max_x, maxi(start.x, end.x))
+		min_y = mini(min_y, mini(start.y, end.y))
+		max_y = maxi(max_y, maxi(start.y, end.y))
+
+		var delta := end - start
+		var length := absi(delta.x) + absi(delta.y)
+		if length == 0:
+			continue
+
+		var step := Vector2i(signi(delta.x), signi(delta.y))
+		for part in range(length):
+			var a := start + step * part
+			var b := a + step
+			walls[_wall_key(a, b)] = true
+
+	# Клеточный прямоугольник с внешним слоем вокруг стен.
+	var min_cell := Vector2i(min_x - 1, min_y - 1)
+	var max_cell := Vector2i(max_x, max_y)
+
+	# Flood fill с внешнего слоя: эти клетки лежат снаружи стен.
+	var outside: Dictionary[Vector2i, bool] = {}
+	var queue: Array[Vector2i] = []
+
+	for x in range(min_cell.x, max_cell.x + 1):
+		for y in range(min_cell.y, max_cell.y + 1):
+			if x == min_cell.x or x == max_cell.x \
+			or y == min_cell.y or y == max_cell.y:
+				var cell := Vector2i(x, y)
+				if not outside.has(cell):
+					outside[cell] = true
+					queue.append(cell)
+
+	var head := 0
+	while head < queue.size():
+		var cell := queue[head]
+		head += 1
+
+		for direction in DIRS:
+			var neighbor := cell + direction
+
+			if neighbor.x < min_cell.x or neighbor.x > max_cell.x \
+			or neighbor.y < min_cell.y or neighbor.y > max_cell.y:
+				continue
+			if outside.has(neighbor):
+				continue
+
+			# Стена на общей границе не даёт flood fill пройти дальше.
+			if walls.has(_boundary_key(cell, direction)):
+				continue
+
+			outside[neighbor] = true
+			queue.append(neighbor)
+
+	# Создаём граф только из не связанных снаружи ячеек.
+	var graph := MapGraph.new()
+
+	for x in range(min_cell.x, max_cell.x + 1):
+		for y in range(min_cell.y, max_cell.y + 1):
+			var cell := Vector2i(x, y)
+			if not outside.has(cell):
+				if base_layer.get_cell_name(cell) == &"exit":
+					graph.add_vertex(cell, MapGraph.VertexType.EXIT)
+				elif fire_layer.get_cell_name(cell) == &"fire":
+					graph.add_vertex(cell, MapGraph.VertexType.FIRE)
+				else:
+					graph.add_vertex(cell, MapGraph.VertexType.EMPTY)
+
+	# Добавляем связи между внутренними соседями без стены между ними.
+	for cell in graph.vertexes.keys():
+		for direction in [Vector2i.RIGHT, Vector2i.DOWN]:
+			var neighbor: Vector2i = cell + direction
+			if graph.vertexes.has(neighbor) \
+			and not walls.has(_boundary_key(cell, direction)):
+				graph.add_edge(cell, neighbor)
+	graph.bake()
+	return graph

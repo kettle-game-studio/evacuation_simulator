@@ -56,7 +56,13 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Import JSON"
 
+[node name="Button" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="6" unique_id=1045327997]
+layout_mode = 2
+text = "Spawn actors"
+
 [node name="Editor" parent="Map" index="7" unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers")]
 tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath("../ActorsLayer")]
+
+[connection signal="pressed" from="Map/UI/MarginContainer/HBoxContainer/RightContainer/Button" to="Map" method="_debug"]
 
 [editable path="Map"]

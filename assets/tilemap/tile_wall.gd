@@ -69,7 +69,7 @@ func remove_wall(start: Vector2i, end: Vector2i) -> bool:
 			return true
 	return false
 
-func get_boundaries_global() -> Rect2:
+func _get_top_left_bottom_right() -> Array[Vector2i]:
 	var top_left := Vector2i(INF, INF)
 	var bottom_right := Vector2i(-INF, -INF)
 	
@@ -78,6 +78,22 @@ func get_boundaries_global() -> Rect2:
 		top_left.y = min(top_left.y, point.y)
 		bottom_right.x = max(bottom_right.x, point.x)
 		bottom_right.y = max(bottom_right.y, point.y)
+	return [top_left, bottom_right]
+
+func get_boundaries_grid() -> Rect2:
+	var top_left_bottom_right := _get_top_left_bottom_right()
+	var top_left := top_left_bottom_right[0]
+	var bottom_right := top_left_bottom_right[1]
+	@warning_ignore("shadowed_variable_base_class")
+	var position := top_left
+	var opposite := bottom_right+Vector2i(1, 1)
+	var size := Vector2(opposite.x - position.x, opposite.y - position.y)
+	return Rect2(position, size)
+
+func get_boundaries_global() -> Rect2:
+	var top_left_bottom_right := _get_top_left_bottom_right()
+	var top_left := top_left_bottom_right[0]
+	var bottom_right := top_left_bottom_right[1]
 	@warning_ignore("shadowed_variable_base_class")
 	var position := to_global(grid_to_local(top_left))
 	var opposite := to_global(grid_to_local(bottom_right+Vector2i(1, 1)))
