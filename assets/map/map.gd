@@ -16,25 +16,30 @@ func _ready() -> void:
 
 
 func _debug():
+
 	var graph := build_inner_cell_graph()
 
 	
-	#queue_redraw()
-	#await draw
+	queue_redraw()
+	await draw
 	for n in get_tree().get_nodes_in_group(&"debug"):
 		n.queue_free()
-	#for vertex in graph.vertexes:
-		#var data := graph.vertexes[vertex]
-		#var label := Label.new()
-		#label.add_to_group(&"debug")
+	for vertex in graph.vertexes:
+		var data := graph.vertexes[vertex]
+		var label := Label.new()
+		label.add_to_group(&"debug")
 		##label.text = "{%d,%d}" % [vertex.x, vertex.y]
-		##label.text += "\n{%d}" % [data.edges.size()]
+		##label.text += "{%d}\n" % [data.bridges.size()]
 		##label.text += "{%d|%d}" % [data.closest_exit, data.closest_fire]
-		#label.text += "{%d}" % [data.room]
-		#var pos := base_layer.map_to_local(vertex)
-		#label.position = pos - Vector2(base_layer.tile_set.tile_size) / 4
-		#label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		#add_child(label)
+		#label.text += "{%s}" % [String.num_int64(data.walls, 2)]
+		label.text += "{%d}\n" % [data.room]
+		var pos := base_layer.map_to_local(vertex)
+		label.position = pos - Vector2(base_layer.tile_set.tile_size) / 4
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.label_settings = LabelSettings.new()
+		if data.is_border: #graph.rooms[data.room].is_outer:
+			label.label_settings.font_color = Color.RED
+		add_child(label)
 
 func clear_map() -> void:
 	base_layer.clear()
@@ -56,11 +61,11 @@ func start_simulation():
 
 func pause_simulation():
 	fire_layer.playing = false
-	actors_layer.process_mode = Node.PROCESS_MODE_DISABLED
+	(func(): actors_layer.process_mode = Node.PROCESS_MODE_DISABLED).call_deferred()
 
 func resume_simulation():
 	fire_layer.playing = true
-	actors_layer.process_mode = Node.PROCESS_MODE_INHERIT
+	(func(): actors_layer.process_mode = Node.PROCESS_MODE_INHERIT).call_deferred()
 
 func draw_map(map_data: MapData, new_map: bool = true) -> void:
 	clear_map()
@@ -285,13 +290,27 @@ func build_inner_cell_graph() -> MapGraph:
 	for x in range(min_cell.x, max_cell.x + 1):
 		for y in range(min_cell.y, max_cell.y + 1):
 			var cell := Vector2i(x, y)
-			if not outside.has(cell):
-				if base_layer.get_cell_name(cell) == &"exit":
-					graph.add_vertex(cell, MapGraph.VertexType.EXIT)
-				elif fire_layer.get_cell_name(cell) == &"fire":
-					graph.add_vertex(cell, MapGraph.VertexType.FIRE)
-				else:
-					graph.add_vertex(cell, MapGraph.VertexType.EMPTY)
+			if outside.has(cell):
+				continue
+			var cell_walls := MapGraph.VertexWalls.NONE
+			if walls.has(_boundary_key(cell, Vector2i.UP)):
+				@warning_ignore("int_as_enum_without_cast")
+				cell_walls |= MapGraph.VertexWalls.TOP
+			if walls.has(_boundary_key(cell, Vector2i.RIGHT)):
+				@warning_ignore("int_as_enum_without_cast")
+				cell_walls |= MapGraph.VertexWalls.RIGHT
+			if walls.has(_boundary_key(cell, Vector2i.DOWN)):
+				@warning_ignore("int_as_enum_without_cast")
+				cell_walls |= MapGraph.VertexWalls.BOTTOM
+			if walls.has(_boundary_key(cell, Vector2i.LEFT)):
+				@warning_ignore("int_as_enum_without_cast")
+				cell_walls |= MapGraph.VertexWalls.LEFT
+			if base_layer.get_cell_name(cell) == &"exit":
+				graph.add_vertex(cell, MapGraph.VertexType.EXIT, cell_walls)
+			elif fire_layer.get_cell_name(cell) == &"fire":
+				graph.add_vertex(cell, MapGraph.VertexType.FIRE, cell_walls)
+			else:
+				graph.add_vertex(cell, MapGraph.VertexType.EMPTY, cell_walls)
 
 	# Добавляем связи между внутренними соседями без стены между ними.
 	for cell in graph.vertexes.keys():

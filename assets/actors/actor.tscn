@@ -115,6 +115,7 @@ font_color = Color(1, 0, 0.09019608, 1)
 [node name="RigidBody2D" type="RigidBody2D" unique_id=947499980]
 collision_layer = 2
 collision_mask = 3
+input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_qdlv5")
 inertia = 1.55
 can_sleep = false
@@ -142,3 +143,5 @@ offset_right = 12.0
 grow_vertical = 0
 text = "AAA"
 label_settings = SubResource("LabelSettings_t7diy")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

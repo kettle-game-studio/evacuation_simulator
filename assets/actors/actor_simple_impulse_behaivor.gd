@@ -9,5 +9,5 @@ func think(visible_data: VisibleData, rand: RandomNumberGenerator) -> Action:
 	for exit in visible_data.exits:
 		action.impulse += visible_data.global_position.direction_to(exit.global_position)
 	for arrow in visible_data.arrows:
-		action.impulse += arrow.direction
+		action.impulse += arrow.direction / (arrow.position.map_distance+1)
 	return action

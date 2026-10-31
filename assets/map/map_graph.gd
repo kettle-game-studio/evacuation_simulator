@@ -3,16 +3,28 @@ extends RefCounted
 
 enum VertexType { EMPTY, EXIT, FIRE }
 
+enum VertexWalls {
+	NONE = 0,
+	TOP = 0b0001,
+	RIGHT = 0b0010,
+	BOTTOM = 0b0100,
+	LEFT = 0b1000,
+}
+
 class VertexData:
+	var coordinates: Vector2i
 	var edges: Array[Vector2i] = []
 	var type: VertexType = VertexType.EMPTY
 	var closest_exit := INT32_MAX
 	var closest_fire := INT32_MAX
 	var room := -1
 	var bridges: Array[Vector2i] = []
+	var walls: VertexWalls = VertexWalls.NONE
+	var is_border := false
 
 class Room:
 	var vertexes: Array[Vector2i] = []
+	var is_outer: bool = false
 
 var vertexes: Dictionary[Vector2i, VertexData] = {}
 var rooms: Array[Room] = [Room.new()]
@@ -26,15 +38,18 @@ func add_edge(from: Vector2i, to: Vector2i):
 	vertexes[from].edges.push_back(to)
 	vertexes[to].edges.push_back(from)
 	
-func add_vertex(coords: Vector2i, type: VertexType):
+func add_vertex(coords: Vector2i, type: VertexType, walls: VertexWalls):
 	var v := VertexData.new()
+	v.coordinates = coords
 	v.type = type
+	v.walls = walls
 	vertexes[coords] = v
 	
 func bake() -> void:
 	bake_closest_exit()
 	bake_closest_fire()
 	search_bridges()
+	_assign_rooms()
 
 func bake_closest_exit() -> void:
 	_bake_closest(VertexType.EXIT, &"closest_exit")
@@ -61,12 +76,12 @@ func _bake_closest(type: VertexType, field: StringName) -> void:
 				vertexes[neighbour][field] = min(visited[neighbour], vertexes[neighbour][field])
 
 func _bridge_dfs(
-	timer: Array[int],
-	visited: Dictionary[Vector2i, bool],
-	time_in: Dictionary[Vector2i, int],
-	time_up: Dictionary[Vector2i, int],
 	v: Vector2i,
 	parent: Vector2i,
+	timer: Array[int] = [0],
+	time_in: Dictionary[Vector2i, int] = {},
+	time_up: Dictionary[Vector2i, int] = {},
+	visited: Dictionary[Vector2i, bool] = {},
 ):
 	visited[v] = true
 	time_in[v] = timer[0]
@@ -79,7 +94,7 @@ func _bridge_dfs(
 		if visited.has(to):
 			time_up[v] = mini(time_up[v], time_in[to])
 		else:
-			_bridge_dfs(timer, visited, time_in, time_up, to, v)
+			_bridge_dfs(to, v, timer, time_in, time_up, visited)
 			time_up[v] = mini(time_up[v], time_up[to])
 			if time_up[to] > time_in[v]:
 				vertexes[v].bridges.push_back(to)
@@ -88,29 +103,72 @@ func _bridge_dfs(
 
 ## http://e-maxx.ru/algo/bridge_searching
 func search_bridges():
-	var visited: Dictionary[Vector2i, bool] = {}
-	var time_in: Dictionary[Vector2i, int] = {}
-	var time_up: Dictionary[Vector2i, int] = {}
-	var timer: Array[int] = [0]
 	var root: Vector2i = vertexes.keys()[0]
-	_bridge_dfs(timer, visited, time_in, time_up, root, root)
-	visited.clear()
-	_rooms_dfs(visited, root, root, 0)
+	_bridge_dfs(root, root)
 
-func _rooms_dfs(
-	visited: Dictionary[Vector2i, bool],
-	v: Vector2i,
-	parent: Vector2i,
-	current_room: int
-):
-	visited[v] = true
-	var data := vertexes[v]
-	if data.bridges.has(parent) and data.bridges.size() == 1:
-		rooms.push_back(Room.new())
-		current_room = rooms.size() - 1
-	data.room = current_room
-	rooms[data.room].vertexes.push_back(v)
-	for to in data.edges:
-		if visited.has(to):
+func _assign_rooms() -> void:
+	rooms.clear()
+	var visited: Dictionary[Vector2i, bool] = {}
+
+	for start in vertexes.keys():
+		if visited.has(start):
 			continue
-		_rooms_dfs(visited, to, v, current_room)
+
+		var room := Room.new()
+		var room_id := rooms.size()
+		rooms.push_back(room)
+
+		var stack: Array[Vector2i] = [start]
+		visited[start] = true
+
+		while not stack.is_empty():
+			var v: Vector2i = stack.pop_back()
+			var data: VertexData = vertexes[v]
+
+			data.room = room_id
+			room.vertexes.push_back(v)
+
+			for dir in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+				if not vertexes.has(v + dir):
+					room.is_outer = true
+					data.is_border = true
+					break
+
+			for to in data.edges:
+				if visited.has(to) or is_gate(v, to):
+					continue
+
+				visited[to] = true
+				stack.push_back(to)
+
+func _has_parallel_wall(v1: Vector2i, v2: Vector2i, side: Vector2i) -> bool:
+	var a := v1 + side
+	var b := v2 + side
+
+	# Проверять можно только существующую пару соседних вершин.
+	if not vertexes.has(a) or not vertexes.has(b):
+		return false
+
+	# Нет ребра между парой — стена продолжается параллельно проходу.
+	return not vertexes[a].edges.has(b)
+
+
+func is_gate(v1: Vector2i, v2: Vector2i) -> bool:
+	var d1: VertexData = vertexes[v1]
+
+	# Топологический критерий: ребро является мостом графа.
+	if d1.bridges.has(v2):
+		return true
+
+	# Геометрический критерий: рядом с открытым проходом есть стена,
+	# продолжающаяся параллельно ему.
+	if v1.x == v2.x:
+		return (
+			_has_parallel_wall(v1, v2, Vector2i.LEFT)
+			or _has_parallel_wall(v1, v2, Vector2i.RIGHT)
+		)
+
+	return (
+		_has_parallel_wall(v1, v2, Vector2i.UP)
+		or _has_parallel_wall(v1, v2, Vector2i.DOWN)
+	)

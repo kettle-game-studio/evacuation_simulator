@@ -56,13 +56,73 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Import JSON"
 
-[node name="Button" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="6" unique_id=1045327997]
+[node name="Debug" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="6" unique_id=1045327997]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Spawn actors"
+text = "Debug info"
+
+[node name="Seed" type="HBoxContainer" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="7" unique_id=608746608]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/Seed" unique_id=2001903595]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Seed: "
+
+[node name="RandomSeed" type="LineEdit" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/Seed" unique_id=584320904]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "42"
+placeholder_text = "1234567890"
+max_length = 10
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="8" unique_id=812316929]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/HBoxContainer2" unique_id=2077076553]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Width:"
+
+[node name="MapWidth" type="LineEdit" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/HBoxContainer2" unique_id=1548467364]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "18"
+placeholder_text = "Width"
+max_length = 10
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="9" unique_id=2125592731]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/HBoxContainer3" unique_id=1953799061]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Height: "
+
+[node name="MapHeight" type="LineEdit" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer/HBoxContainer3" unique_id=603799484]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+placeholder_text = "Height"
+max_length = 10
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="GenerateMap" type="Button" parent="Map/UI/MarginContainer/HBoxContainer/RightContainer" parent_id_path=PackedInt32Array(1364593442, 668262130) index="10" unique_id=351275399]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Generate map"
 
 [node name="Editor" parent="Map" index="7" unique_id=1872933957 node_paths=PackedStringArray("tile_map_layers")]
 tile_map_layers = [NodePath("../BaseLayer"), NodePath("../FireLayer"), NodePath("../ActorsLayer")]
 
-[connection signal="pressed" from="Map/UI/MarginContainer/HBoxContainer/RightContainer/Button" to="Map/Editor" method="spawn_random_actors"]
+[connection signal="pressed" from="Map/UI/MarginContainer/HBoxContainer/RightContainer/Debug" to="Map" method="_debug"]
 
 [editable path="Map"]

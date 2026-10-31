@@ -34,6 +34,7 @@ func on_simulation_started(map: Map):
 	self.animated_sprite_2d.play(&"default")
 	self._rand.seed = id.x * 32415 ^ id.y * 94023
 
+var last_visible = false
 @warning_ignore("shadowed_variable")
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if self.state != State.ALIVE:
@@ -41,6 +42,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 	@warning_ignore("shadowed_variable_base_class")
 	var visible := map.get_visible_data(global_position, 2)
+	last_visible = visible
 	for fire in visible.fire:
 		if fire.map_distance <= 0.5:
 			finish(FinalState.DIED)
@@ -66,3 +68,8 @@ func finish(final_state: FinalState):
 	state = State.FINISHED
 	actor_finished.emit(self, final_state)
 	_dissapear_animation.call_deferred()
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton:
+		print(last_visible)
